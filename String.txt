@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main{
+    public static String func(String str) {
+        String ret = "";
+        String[] s = str.split(" ");
+        for(String ss:s) {
+            ret += ss;
+        }
+        return ret;
+    }
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        String ret = func(str);
+        System.out.println(ret);
+        
+  }
+}
