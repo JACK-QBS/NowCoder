@@ -1,0 +1,23 @@
+链接：
+https://www.nowcoder.com/practice/784efd40ed8e465a84821c8f3970b7b5?tpId=182&&tqId=34772&rp=1&ru=/activity/oj&qru=/ta/exam-all/question-ranking
+
+// 字符集合：
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        while(scanner.hasNext()) { // 是否有下一行
+            String str = scanner.nextLine();
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0;i < str.length();i++) {
+                char ch = str.charAt(i);
+                if(!sb.toString().contains(ch+"")) {
+                    sb.append(ch);
+                }
+            }
+            System.out.println(sb.toString());
+        }
+    }
+}
