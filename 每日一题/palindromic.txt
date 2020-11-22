@@ -1,0 +1,25 @@
+
+
+// 统计回文
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+        Scanner sc = new Scanner(System.in);
+        StringBuilder A = new StringBuilder(sc.nextLine());
+        StringBuilder B = new StringBuilder(sc.nextLine());
+        int r = 0;
+        for(int i = 0; i <= A.length(); ++i){
+            StringBuilder temp = new StringBuilder(A);
+            temp.insert(i, B);
+            if(f(temp)) r++;
+        }
+        System.out.println(r);
+    }
+    static boolean f(StringBuilder s){    //判断回文串
+        String s1 = s.toString();
+        StringBuilder s2 = s.reverse();
+        return s1.equals(s2.toString());
+    }
+}
