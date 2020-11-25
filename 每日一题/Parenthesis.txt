@@ -1,0 +1,45 @@
+
+
+  //  合法括号序列判断
+
+ public boolean chkParenthesis(String A, int n) {
+        // write code here
+        /*
+         * 1.碰到")"开始弹出栈顶的"("，如果此时栈为空，则返回false
+         * 2.碰到其他内容直接返回false
+         * 3.字符串结尾时，栈非空返回false
+         */
+          // 新建一个栈用来存放 '('
+        Stack<Character> br = new Stack<Character>();
+        if (A == null || A.length() != n) {
+            return false;
+        }
+        for (int i = 0; i < n; i++) {
+            if (A.charAt(i) == '(') {
+                br.push(A.charAt(i));
+            } else if (A.charAt(i) == ')') {
+                if (br.empty()) {
+                    // 在还有 ')' 的情况下，栈为空
+                    return false;
+                } else {
+                    // 弹出一个 '('
+                    br.pop();
+                }
+            } else {
+                // 栈中的 '(' 没有与之对应的 ')'
+                return false;
+            }
+        }
+        if (!br.empty()) {
+            // 字符串遍历完后，栈不为空
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+
+
+
+
