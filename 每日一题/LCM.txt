@@ -1,0 +1,23 @@
+
+// 最小公倍数
+
+最小公倍数=两数乘积 / 最大公约数
+（最大公约数可以用欧几里得算法获取即辗转相除法 gbc(a,b)= gbc(b, a%b);）
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            int A = input.nextInt();
+            int B = input.nextInt();
+            System.out.println((A*B)/min(A,B));
+        }
+    }
+    public static int min(int a,int b) {
+      if (b==0) {
+          return a;
+      }
+        return min(b,a%b);
+    }
+}
