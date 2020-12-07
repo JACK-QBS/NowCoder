@@ -1,0 +1,34 @@
+
+// 和奥巴马一起编程：
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+            int a = input.nextInt();
+            String c = input.next();
+            int mid; // 中间行个数
+            if (a % 2 == 0) {
+                mid = a / 2;
+            } else {
+                mid = a / 2 + 1;
+            }
+            // 打印第一行数据
+            for (int i = 0; i < a; i++) {
+                System.out.print(c);
+            }
+            System.out.println();
+            // 打印中间行：
+            for (int i = 0; i < mid-2; i++) {
+                System.out.print(c);
+                for (int j = 0; j < a-2; j++) {
+                    System.out.print(" ");
+                }
+                System.out.println(c);
+            }
+        // 打印最后一行数据
+            for (int i = 0; i < a; i++) {
+                System.out.print(c);
+            }
+    }
+}
