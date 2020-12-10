@@ -1,0 +1,27 @@
+
+// 统计同成绩学生人数
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            int N = input.nextInt();
+            if (N == 0) {
+                return;
+            }
+            int[] arr = new int[N];
+            for (int i = 0; i < N; i++) {
+                arr[i] = input.nextInt();
+            }
+            int score = input.nextInt();
+            int count = 0;
+            for (int i = 0; i < N; i++) {
+                if (score == arr[i]) {
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
+    }
+}
