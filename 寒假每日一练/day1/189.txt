@@ -1,0 +1,32 @@
+
+给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
+
+示例 2:
+
+输入：nums = [-1,-100,3,99], k = 2
+输出：[3,99,-1,-100]
+解释: 
+向右旋转 1 步: [99,-1,-100,3]
+向右旋转 2 步: [3,99,-1,-100]
+
+解法：
+先将整个数组翻转，在将前k个数和后k个数分别翻转
+
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        exchange(nums, 0, nums.length-1);
+        exchange(nums, 0, k-1);
+        exchange(nums, k, nums.length-1);
+    }
+    public void exchange(int[] nums, int start, int end) {
+        while (start  end) {
+            int tmp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = tmp;
+            start++;
+            end--;
+        }
+    }
+}
