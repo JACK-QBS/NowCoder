@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()){
+            int n = input.nextInt();
+            int a = input.nextInt();
+            for (int i = 0; i < n; i++) {
+                int b = input.nextInt();
+                if (b <= a) {
+                    a += b;
+                } else {
+                    int tmp = GCD(a,b);
+                    a += tmp;
+                }
+            }
+            System.out.println(a);
+        }
+    }
+    //求最大公约数
+    public static int GCD (int a,int b) {
+        if (a == 0) {
+            return b;
+        }
+        return GCD(b%a,a);
+    }
+}
