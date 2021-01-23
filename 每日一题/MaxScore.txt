@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()){
+            int n = input.nextInt();//学生数目
+            int m = input.nextInt();//操作数目
+            int[] arr = new int[n];//初始成绩
+            for (int i = 0; i < n; i++) {
+                arr[i] = input.nextInt();
+            }
+            for (int j = 0; j < m; j++) {
+                String c = input.next();
+                int a = input.nextInt();
+                int b = input.nextInt();
+                if (c.equals("Q")) {
+                    int s = Math.min(a,b);//开始下标
+                    int e = Math.max(a,b);//结束下标
+                    int max = arr[s-1];
+                    for (int i = s; i < e; i++) {
+                        max = Math.max(max,arr[i]);
+                    }
+                    System.out.println(max);
+                }
+                if (c.equals("U")) {
+                    arr[a-1] = b;
+                }
+            }
+        }
+    }
+}
