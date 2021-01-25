@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            int n = input.nextInt();//课程数
+            int[] credit = new int[n];//学分
+            for (int i = 0; i < n; i++) {
+                credit[i] = input.nextInt();
+            }
+            int[] score = new int[n];//成绩
+            for (int i = 0; i < n; i++) {
+                score[i] = input.nextInt();
+            }
+            System.out.printf("%.2f",averageCredit(credit, score));
+        }
+    }
+    
+    public static double averageCredit(int[] credit,int[] ret){
+        double sum = 0.0; //学分之和
+        double allClassCredit = 0.0; //绩点之和
+        for (int i = 0; i < ret.length ; i++) {
+            allClassCredit += credit[i]*Gread(ret[i]);
+            sum += credit[i];
+        }
+        //GPA  所有学科绩点之和/所有课程学分之和
+        return allClassCredit/sum; 
+    }
+    //每门课程对应的绩点
+    public static double Gread(int ret){
+        double gread = 0;
+        if ( ret >= 90 && ret <= 100){
+            gread = 4.0;
+        }else if (ret >=85 && ret <= 89){
+            gread = 3.7;
+        }else if (ret >= 82 && ret <= 84){
+            gread = 3.3;
+        }else if (ret >= 78 && ret <= 81){
+            gread = 3.0;
+        }else if (ret >= 75 && ret <= 77){
+            gread = 2.7;
+        }else if (ret >= 72 && ret <=74){
+            gread = 2.3;
+        }else if (ret >= 68 && ret <= 71){
+            gread = 2.0;
+        }else if (ret >= 64 && ret <= 67){
+            gread = 1.5;
+        }else if (ret >= 60 && ret <= 63){
+            gread = 1.0;
+        }else if (ret < 60){
+            gread = 0.0;
+        }
+        return gread;
+    }
+}
