@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            int num = input.nextInt();
+            int a = add(num);
+            int b = add(num*num);
+            System.out.println(a +" " + b);
+        }
+        input.close();
+    }
+    public static int add(int num) {
+        int count = 0;
+        while (num != 0) {
+            count += num % 10;
+            num /= 10;
+        }
+        return count;
+    }
+}
