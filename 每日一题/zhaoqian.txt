@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        //将字符串按 . 拆分
+        String[] s1 = sc.next().split("[.]");//应付
+        String[] s2 = sc.next().split("[.]");//实付
+        change c = new change();
+        int sum1 = c.calculate(s1);
+        int sum2 = c.calculate(s2);
+        int dv = sum2 - sum1;
+        //钱不够
+        if (dv < 0){
+            System.out.print("-");
+            dv = -dv;
+            System.out.print(dv/(17*29)+"."+(dv/29)%17+"."+dv%29);
+        }
+        System.out.print(dv/(17*29)+"."+(dv/29)%17+"."+dv%29);
+    }
+}
+class change {
+    int galleon;
+    int sickle;
+    int knut;
+    int sum;
+    public int calculate(String[] a) {
+        galleon = Integer.parseInt(a[0]);
+        sickle = Integer.parseInt(a[1]);
+        knut = Integer.parseInt(a[2]);
+        sum = galleon*17*29 + sickle*29 + knut;
+        return sum;
+    }
+}
