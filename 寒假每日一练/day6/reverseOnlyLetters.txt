@@ -1,0 +1,22 @@
+class Solution {
+    public String reverseOnlyLetters(String S) {
+        char[] ch = S.toCharArray();
+        int i = 0, j = ch.length - 1;
+        while (i < j) {
+            if ((ch[i] >= 97 && ch[i] <= 122) || (ch[i] >= 65 && ch[i] <= 90)) {
+                if ((ch[j] >= 97 && ch[j] <= 122) || (ch[j] >= 65 && ch[j] <= 90)) {
+                    char tmp = ch[i];
+                    ch[i] = ch[j];
+                    ch[j] = tmp;
+                    i++;
+                    j--;
+                } else {
+                    j--;
+                }
+            } else {
+                i++;
+            }
+        }
+        return new String(ch);
+    }
+}
