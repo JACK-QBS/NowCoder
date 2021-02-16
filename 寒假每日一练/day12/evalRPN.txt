@@ -1,0 +1,29 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        //用栈存放每个数字，遇到运算符，就弹出栈顶两个元素，进行运算
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < tokens.length; i++) {
+            switch (tokens[i]) {
+                case "+":
+                    stack.push(stack.pop() + stack.pop());
+                    break;
+                case "-":
+                    int a = stack.pop();//第一个弹出来的数字
+                    stack.push(stack.pop() - a);//第二个栈顶元素减第一个栈顶元素
+                    break;
+                case "*":
+                    stack.push(stack.pop() * stack.pop());
+                    break;
+                case "/":
+                    int b = stack.pop();
+                    stack.push(stack.pop() / b);//第二个栈顶元素除第一个栈顶元素
+                    break;
+                default:
+                    //如果不是运算符，就将数字压入栈中
+                    stack.push(Integer.parseInt(tokens[i]));
+                    break;
+            }
+        }
+        return stack.pop();
+    }
+}
