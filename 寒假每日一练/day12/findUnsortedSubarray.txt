@@ -1,0 +1,17 @@
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        //复制一份nums，将其排序，找出两者之间不同的最远两个位置的距离
+        int[] pnums = nums.clone();
+        Arrays.sort(pnums);
+        int start = pnums.length;
+        int end = 0;
+        for (int i = 0; i < pnums.length; i++) {
+            if (nums[i] != pnums[i]) {
+                start = Math.min(start,i);//取两者的最小值（开始位置）
+                end = Math.max(end,i);//取两者的最大值（结束位置）
+            }
+        }
+        //若是已经排好序的和只有一个数字的数组，他们不会进行判断语句，所以end-start是负的
+        return (end - start >= 0 ? end - start + 1 : 0);
+    }
+}
