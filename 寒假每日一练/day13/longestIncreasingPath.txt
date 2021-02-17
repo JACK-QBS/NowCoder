@@ -1,0 +1,62 @@
+class Solution {
+    //备忘录
+    private int memo[][];
+    //矩阵
+    private int matrix[][];
+
+    public int longestIncreasingPathCore(int row, int col, int val) {
+        //越界
+        if (row == -1 || col == -1) return 0;
+        if (row == memo.length || col == memo[0].length) return 0;
+        //比自己大的，不要
+        if (val >= matrix[row][col]) return 0;
+        //已经查找过的，直接取
+        if (memo[row][col] != 0) {
+            return memo[row][col];
+        }
+        //当前值
+        val = matrix[row][col];
+        //分别向上下左右，四个方向进行遍历，并记录各方向的长度
+        int left    = longestIncreasingPathCore(row - 1, col, val);
+        int right   = longestIncreasingPathCore(row + 1, col, val);
+        int bottom  = longestIncreasingPathCore(row, col + 1, val);
+        int top     = longestIncreasingPathCore(row, col - 1, val);
+        memo[row][col] = Math.max(Math.max(left, right), Math.max(bottom, top)) + 1;
+        return memo[row][col];
+    }
+
+    public int longestIncreasingPath(int[][] matrix) {
+        //行
+        int row = matrix.length;
+        if (row == 0) return 0;
+        //列
+        int col = matrix[0].length;
+        //初始化备忘录
+        this.memo = new int[row][col];
+        this.matrix = matrix;
+        /// 遍历 + dfs
+        for (int i = 0; i < row; i ++) {
+            for (int j = 0; j < col; j++) {
+                //已经查找过的，pass
+                if (memo[i][j] != 0) continue;
+                //记录当前值
+                int val = matrix[i][j];
+                //分别向上下左右，四个方向进行遍历，并记录各方向的长度
+                int left    = longestIncreasingPathCore(i - 1, j, val);
+                int right   = longestIncreasingPathCore(i + 1, j, val);
+                int bottom  = longestIncreasingPathCore(i, j + 1, val);
+                int top     = longestIncreasingPathCore(i, j - 1, val);
+                //记录最长的
+                memo[i][j] = Math.max(Math.max(left, right), Math.max(bottom, top)) + 1;
+            }
+        }
+        //查找最大值
+        int length = 1;
+        for (int i = 0; i < row; i ++) {
+            for (int j = 0; j < col; j++) {
+                length = Math.max(this.memo[i][j], length);   
+            }
+        }
+        return length;
+    }
+}
