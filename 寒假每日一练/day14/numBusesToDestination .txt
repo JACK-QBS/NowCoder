@@ -1,0 +1,49 @@
+class Solution {
+    public static int MAXNUM=6000;
+    public int numBusesToDestination(int[][] routes, int s, int t) {
+        if(s==t)return 0;
+        Map<Integer,ArrayList<Integer>> nodeRelatedRoutes=new HashMap<>();
+        int routesSsize=routes.length;
+        Map<Integer,Boolean> nodeUsed=new HashMap<>(),routesUsed=new HashMap<>();
+        //associate routes with nodes
+        for(int i=0;i<routesSsize;i++){
+            routesUsed.put(i,false);
+            for(int j=0;j<routes[i].length;j++){
+                nodeUsed.put(routes[i][j],false);
+                if(nodeRelatedRoutes.containsKey(routes[i][j])){
+                    nodeRelatedRoutes.get(routes[i][j]).add(i);
+                }
+                else{
+                    ArrayList<Integer> mid=new ArrayList<>();
+                    mid.add(i);
+                    nodeRelatedRoutes.put(routes[i][j],mid);
+                }
+            }
+        }
+        int len=1;
+        int queue[]=new int[MAXNUM],front=0,rear=0;
+        queue[rear++]=s;nodeUsed.put(s,true);
+        while(front!=rear){
+            int size=(rear+MAXNUM-front)%MAXNUM;
+            for(int i=0;i<size;i++){
+                int nowNode=queue[front];
+                front=(front+1)%MAXNUM;
+                for(int related:nodeRelatedRoutes.get(nowNode)){
+                    if(!routesUsed.get(related)){
+                        for(int nei:routes[related]){
+                            if(!nodeUsed.get(nei)){
+                                if(nei==t)return len;
+                                queue[rear]=nei;
+                                rear=(rear+1)%MAXNUM;
+                                nodeUsed.put(nei,true);
+                            }
+                        }
+                        routesUsed.put(related,true);
+                    }
+                }
+            }
+            len++;
+        }
+        return -1;
+    }
+}
