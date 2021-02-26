@@ -1,0 +1,29 @@
+import java.util.*;
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Plus {
+    public ListNode plusAB(ListNode a, ListNode b) {
+        // write code here
+        if (a == null) {
+            return b;
+        }
+        if (b == null) {
+            return a;
+        }
+        ListNode curA = a.headNode;
+        ListNode curB = b.headNode;
+        while (curA == null && curB == null) {
+            curA.val += curB.val;
+            curA = curA.next;
+            curB = curB.next;
+        }
+        return a;
+    }
+}
